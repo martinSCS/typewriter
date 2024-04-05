@@ -6,7 +6,7 @@
       <p>大学生 | 业余 Web 开发者 | 字体爱好者</p>
       <p>浓厚的兴趣，是支撑自己不断学习的动力。</p>
       <hr style="border-color: grey"/>
-      <p style="margin: 5px 0; font-size: 14px; color: #6text-align: center">
+      <p style="margin: 5px 0; font-size: 14px; text-align: center">
       E-mail: <a href="mailto:me@martingrocetop">me@martingrocery.top</a><br/>
       Blog: <a href="https://www.martingrocery.top">https://www.martingrocery.top</a></p>
     </td>

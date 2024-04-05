@@ -1,19 +1,17 @@
-<div style="display: flex; justify-content: center; align-items: center; margin-bottom: 3rem; margin-top: 3rem;">
-    <div style="width: 350px; background-color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 20px;">
-        <div style="width: 80px; height: 80px; background-color: #4CAF50; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
-            <img src="assets/img/avatar.jpg" style="border-radius: 50%">
-        </div>
-        <div class="intro">
-            <h1 style="margin: 0; font-size: 24px; color: #333;text-align: center">杂货铺的Martin</h1>
-            <p style="margin: 5px 0; font-size: 14px; color: #666;text-align: center">大学生 | 业余 Web 开发者 | 字体爱好者</p>
-            <p style="margin: 5px 0; font-size: 14px; color: #666;">浓厚的兴趣，是支撑自己不断学习的动力。</p>
-            <hr style="border-color: grey"/>
-            <p style="margin: 5px 0; font-size: 14px; color: #666;text-align: center">
-            E-mail: <a href="mailto:me@martingrocery.top">me@martingrocery.top</a><br/>
-            Blog: <a href="https://www.martingrocery.top">https://www.martingrocery.top</a></p>
-        </div>
-    </div>
-</div>
+<table style="border: solid 1px;">
+  <tr>
+    <td><img src="assets/img/avatar.jpg" alt="Avatar" width="80" height="80" style="border-radius: 50%;"></td>
+    <td>
+      <h3>杂货铺的Martin</h3>
+      <p>大学生 | 业余 Web 开发者 | 字体爱好者</p>
+      <p>浓厚的兴趣，是支撑自己不断学习的动力。</p>
+      <hr style="border-color: grey"/>
+      <p style="margin: 5px 0; font-size: 14px; color: #6text-align: center">
+      E-mail: <a href="mailto:me@martingrocetop">me@martingrocery.top</a><br/>
+      Blog: <a href="https://www.martingrocery.top">https://www.martingrocery.top</a></p>
+    </td>
+  </tr>
+</table>
 
 # typewriter.js - 打字机效果JavaScript库
 

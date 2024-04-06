@@ -1,17 +1,3 @@
-<table style="border: solid 1px;">
-  <tr>
-    <td>
-      <h3>杂货铺的Martin</h3>
-      <p>大学生 | 业余 Web 开发者 | 字体爱好者</p>
-      <p>浓厚的兴趣，是支撑自己不断学习的动力。</p>
-      <hr style="border-color: grey"/>
-      <p style="margin: 5px 0; font-size: 14px; text-align: center">
-      E-mail: <a href="mailto:me@martingrocetop">me@martingrocery.top</a><br/>
-      Blog: <a href="https://www.martingrocery.top">https://www.martingrocery.top</a></p>
-    </td>
-  </tr>
-</table>
-
 # typewriter.js - 打字机效果JavaScript库
 
 `typewriter.js`是一个用于在网页上创建打字机效果的轻量级JavaScript库。它可以模拟文本的逐字打印和删除效果，适用于网站的标题、介绍或任何需要动态文本效果的地方。
@@ -202,3 +188,17 @@ let routeDict = {
 ```
 
 则会以<span lang="ja">た→たこ→章魚</span>和<span lang="ja">え→えび→海老</span>的顺序打出来。
+
+<table style="border: solid 1px;">
+  <tr>
+    <td>
+      <h3>杂货铺的Martin</h3>
+      <p>大学生 | 业余 Web 开发者 | 字体爱好者</p>
+      <p>浓厚的兴趣，是支撑自己不断学习的动力。</p>
+      <hr style="border-color: grey"/>
+      <p style="margin: 5px 0; font-size: 14px; text-align: center">
+      E-mail: <a href="mailto:me@martingrocetop">me@martingrocery.top</a><br/>
+      Blog: <a href="https://www.martingrocery.top">https://www.martingrocery.top</a></p>
+    </td>
+  </tr>
+</table>

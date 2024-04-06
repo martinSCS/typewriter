@@ -1,6 +1,5 @@
 <table style="border: solid 1px;">
   <tr>
-    <td><img src="assets/img/avatar.jpg" alt="Avatar" width="80" height="80" style="border-radius: 50%;"></td>
     <td>
       <h3>杂货铺的Martin</h3>
       <p>大学生 | 业余 Web 开发者 | 字体爱好者</p>

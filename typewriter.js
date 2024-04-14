@@ -12,17 +12,13 @@ class Typewriter {
     this.charIndex = 0;
     this.routeIndex = 0;
     this.isDeleting = false;
-    this.currentText = '';
+    this.currentText = [];
     this.currentTextLength = 0;
     this.type();
   }
   type() {
     let currentChar;
-    if (Array.isArray(this.texts[this.textIndex])) {
-      currentChar = this.texts[this.textIndex][this.charIndex];
-    } else {
-      currentChar = this.texts[this.textIndex].charAt(this.charIndex);
-    }
+    currentChar = this.texts[this.textIndex][this.charIndex];
     const currentCharPosition = this.charIndex + ',' + this.textIndex;
     const routeSelection = this.routeMap[currentCharPosition];
     const routes = this.routeDict[currentChar];
@@ -35,7 +31,7 @@ class Typewriter {
       }
     }
     if (this.isDeleting) {
-      this.currentText = this.currentText.substring(0, this.currentText.length - 1);
+      this.currentText = this.currentText.slice(0, this.currentText.length - 1);
       this.currentTextLength--;
       if (this.currentTextLength < 0) {
         this.isDeleting = false;
@@ -46,7 +42,7 @@ class Typewriter {
       }
     } else {
       if (route && this.routeIndex < route.length) {
-        this.currentText = this.texts[this.textIndex].slice(0, this.charIndex).join('') + route[this.routeIndex];
+        this.currentText = this.texts[this.textIndex].slice(0, this.charIndex).concat(route[this.routeIndex]);
         this.routeIndex++;
         if (this.routeIndex >= route.length) {
           this.charIndex++;
@@ -54,7 +50,7 @@ class Typewriter {
         }
       } else {
         this.charIndex++;
-        this.currentText = this.texts[this.textIndex].slice(0, this.charIndex).join('');
+        this.currentText = this.texts[this.textIndex].slice(0, this.charIndex);
       }
       if (this.charIndex > this.texts[this.textIndex].length) {
         this.isDeleting = true;
@@ -63,7 +59,7 @@ class Typewriter {
         return;
       }
     }
-    this.element.textContent = this.currentText;
+    this.element.textContent = this.currentText.join('');
     setTimeout(() => this.type(), this.isDeleting ? this.deletingSpeed : this.typingSpeed);
   }
 }

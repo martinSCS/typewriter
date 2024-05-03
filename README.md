@@ -55,14 +55,14 @@
 
 ```javascript
 const typewriter = new Typewriter(
-    element = document.getElementById('typewriter'), 
-    texts = ['Hello, World!', 'Welcome to my website!'], 
-    typingSpeed = 100, 
-    deletingSpeed = 50, 
-    typingPauseTime = 2000, 
-    deletingPauseTime = 500, 
-    routeDict = {}, 
-    routeMap = {}
+    document.getElementById('typewriter'),       // element
+    ['Hello, World!', 'Welcome to my website!'], // texts
+    100,                                         // typingSpeed
+    50,                                          // deletingSpeed
+    2000,                                        // typingPauseTime
+    500,                                         // deletingPauseTime
+    {},                                          // routeDict
+    {}                                           // routeMap
 );
 ```
 
@@ -89,7 +89,7 @@ routeDict = {
     '한': [['ㅎ', '하', '한']]
 };
 
-const typewriter = new Typewriter(document.querySelector('#typewriter'), texts = texts, routeDict = routeDict);
+const typewriter = new Typewriter(document.querySelector('#typewriter'), texts, routeDict);
 ```
 
 这样，我们就可以得到这样的效果
@@ -155,11 +155,11 @@ let routeMap = {
 }
             
 const typewriter = new Typewriter(
-    element = document.querySelector('#typewriter'), 
-    texts = texts, 
-    100, 50, 2000, 0, 
-    routeDict = routeDict, 
-    routeMap = routeMap
+    document.querySelector('#typewriter'), // elements
+    texts,                                 // texts
+    100, 50, 2000, 0,                      // typingSpeed, deletingSpeed, typingPauseTime, deletingPauseTime
+    routeDict,                             // routeDict
+    routeMap                               // routeMap
 );
 ```
 
@@ -198,7 +198,7 @@ texts = [
 若设定&#x202f;`routeDict`&#x202f;如下：
 
 ```javascript
-let routeDict = {
+routeDict = {
   '章魚': ['た', 'たこ', '章魚'],
   '海老': ['え', 'えび', '海老']
 }
@@ -239,8 +239,8 @@ let texts = [
 ];
             
 const typewriter = new Typewriter(
-    element = document.querySelector('#typewriter'), 
-    texts = texts, 
+    document.querySelector('#typewriter'), 
+    texts, 
     100, 50, 2000, 0, {}, {}, function (text) {return scrambleString(text, text === this.texts[this.textIndex].join('') || this.isDeleting === true);} //第二个参数在文本打完或正在删除时为真
 );
 ```

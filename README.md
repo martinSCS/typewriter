@@ -43,6 +43,7 @@
 - `deletingPauseTime` **(可选)**: 删除后的暂停时间（毫秒），默认为0。
 - `routeDict` **(可选)**: 路由字典，用于定义特殊字符的打字路径。
 - `routeMap` **(可选)**: 路由映射，用于指定文本中特定位置字符的路由路径。
+- `additionalFunc`&#x202f;**(可选)**: 可选函数，用于对每一步打字或删除操作产生出来的文字进行处理。
 
 ## 示例
 
@@ -88,7 +89,7 @@ const typewriter = new Typewriter(document.querySelector('#typewriter'), texts =
 这样，我们就可以得到这样的效果
 
 <figure>
-  <img src="assets/img/type.gif" alt="三个字的打字效果">
+  <img src="assets/img/type_0.gif" alt="三个字的打字效果">
   <figcaption>图 1 - 三个字的输出效果</figcaption>
 </figure>
 
@@ -104,22 +105,22 @@ routeMap是Typewriter类中用于指定文本中特定位置字符的路由路�
 
 - <span lang="ja"><ruby>
   高 <rp>(</rp><rt>たか</rt><rp>)</rp>
-</ruby><ruby>
+  </ruby><ruby>
   木 <rp>(</rp><rt>ぎ</rt><rp>)</rp>
-</ruby>さんはこの<ruby>
+  </ruby>さんはこの<ruby>
   高 <rp>(</rp><rt>こう</rt><rp>)</rp>
-</ruby><ruby>
+  </ruby><ruby>
   校 <rp>(</rp><rt>こう</rt><rp>)</rp>
-</ruby>の<ruby>
+  </ruby>の<ruby>
   生 <rp>(</rp><rt>せい</rt><rp>)</rp>
-</ruby><ruby>
+  </ruby><ruby>
   徒 <rp>(</rp><rt>と</rt><rp>)</rp>
-</ruby>です。</span>
+  </ruby>です。</span>
 - <span lang="zh-cn">头发<ruby>
   长 <rp>(</rp><rt>zhǎng</rt><rp>)</rp>
-</ruby>得越来越<ruby>
+  </ruby>得越来越<ruby>
   长 <rp>(</rp><rt>cháng</rt><rp>)</rp>
-</ruby>了。</span>
+  </ruby>了。</span>
 
 我们可以将&#x202f;`routeDict`&#x202f;和&#x202f;`routeMap`&#x202f;设定为如下状态：
 
@@ -178,7 +179,15 @@ texts = [
 ]
 ```
 
-若不设定&#x202f;`routeDict`，那么“<span lang='ja'>章魚</span>”和“<span lang='ja'>海老</span>”将会以整体的形式一齐出现，而不是两字分开出现。
+若不设定&#x202f;`routeDict`，那么“<span lang='ja'><ruby>
+章 <rp>(</rp><rt>た</rt><rp>)</rp>
+</ruby><ruby>
+魚 <rp>(</rp><rt>こ</rt><rp>)</rp>
+</ruby></span>”和“<span lang='ja'><ruby>
+海 <rp>(</rp><rt>え</rt><rp>)</rp>
+</ruby><ruby>
+老 <rp>(</rp><rt>び</rt><rp>)</rp>
+</ruby></span>”将会以整体的形式一齐出现，而不是两字分开出现。
 
 若设定&#x202f;`routeDict`&#x202f;如下：
 
@@ -189,4 +198,48 @@ let routeDict = {
 }
 ```
 
-则会以<span lang="ja">た→たこ→章魚</span>和<span lang="ja">え→えび→海老</span>的顺序打出来。
+则会以“<span lang="ja">た→たこ→章魚</span>”和“<span lang="ja">え→えび→海老</span>”的顺序打出来。
+
+## `addtionalFunc`&#x202f;的使用方法
+
+`addtionalFunc`&#x202f;是一个函数。其参数其中一个必须是字符串，返回值必须是一个字符串。其默认值是一个会将字符串原封不动返回回来的函数。即
+
+```javascript
+additionalFunc = function (text) {return text;}
+```
+
+`addtionalFunc`&#x202f;可用于实现&#x202f;`routeDict`、`routeMap`&#x202f;和&#x202f;`texts`&#x202f;达不到的效果。打字机效果每一步都会产生一个新的字符串，然后用这个字符串替换&#x202f;`element`&#x202f;元素中的文本内容。但是用户可能需要以固定的逻辑修改这个字符串，再进行替换。
+
+例如，想要在字符串没有完全显示出来之前的每一次打字，你都希望打乱字符串的顺序，直至字符串被打完。那么你可以这么写：
+```javascript
+function scrambleString(str, shouldNotScramble) {
+    // 如果布尔值为真，直接返回原字符串
+    if (shouldNotScramble) {
+        return str;
+    }
+            
+    // 将字符串转换为数组以便打乱
+    let array = str.split('');
+    // 通过 Fisher-Yates 算法打乱数组
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // 交换元素
+    }
+    // 将打乱后的数组重新组合成字符串并返回
+    return array.join('');
+}
+let texts = [
+    'hello, world'
+];
+            
+const typewriter = new Typewriter(
+    element = document.querySelector('#typewriter'), 
+    texts = texts, 
+    100, 50, 2000, 0, {}, {}, function (text) {return scrambleString(text, text === this.texts[this.textIndex].join('') || this.isDeleting === true);} //第二个参数在文本打完或正在删除时为真
+);
+```
+
+<figure>
+  <img src="assets/img/type_2.gif" alt="三个字的打字效果">
+  <figcaption>图 3 - 以上代码的效果</figcaption>
+</figure>

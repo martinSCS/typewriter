@@ -101,7 +101,7 @@ const typewriter = new Typewriter(document.querySelector('#typewriter'), texts, 
 
 ### `routeMap`&#x202f;的使用方法
 
-routeMap是Typewriter类中用于指定文本中特定位置字符的路由路径的一个对象。它允许你对同一个字符在不同位置有不同的打字路径，这在处理多种语言或特殊打字效果时非常有用。
+`routeMap`&#x202f;是Typewriter类中用于指定文本中特定位置字符的路由路径的一个对象。它允许你对同一个字符在不同位置有不同的打字路径，这在处理多种语言或特殊打字效果时非常有用。
 
 对于中文和日文，同一个字在不同情况下可能会有不同的键入方式。譬如，中文的“长”在不同的情况下会有“chang”和“zhang”两种键入方式，日文的“高”在不同的情况下也有“<span lang="ja">こう</span>”（<span lang="ja">高校</span>）和“<span lang="ja">たか</span>”（<span lang="ja">高い</span>）两种键入方式。
 

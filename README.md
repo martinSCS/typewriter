@@ -2,7 +2,7 @@
 
 [更新日志](log.md)
 
-# typewriter.js - 打字机效果JavaScript库
+# typewriter.js - 打字机效果&#x202f;JavaScript&#x202f;库
 
 `typewriter.js`&#x202f;是一个用于在网页上创建打字机效果的轻量级JavaScript库。它可以模拟文本的逐字打印和删除效果，适用于网站的标题、介绍或任何需要动态文本效果的地方。
 

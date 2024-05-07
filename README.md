@@ -1,3 +1,5 @@
+<p style="text-align: center"><span lang="zh-hans">简体中文</span> | <span lang="en"><a href="README_en-US.md">English</a></span></p>
+
 [更新日志](log.md)
 
 # typewriter.js - 打字机效果JavaScript库
@@ -103,7 +105,7 @@ const typewriter = new Typewriter(document.querySelector('#typewriter'), texts, 
 
 `routeMap`&#x202f;是Typewriter类中用于指定文本中特定位置字符的路由路径的一个对象。它允许你对同一个字符在不同位置有不同的打字路径，这在处理多种语言或特殊打字效果时非常有用。
 
-对于中文和日文，同一个字在不同情况下可能会有不同的键入方式。譬如，中文的“长”在不同的情况下会有“chang”和“zhang”两种键入方式，日文的“高”在不同的情况下也有“<span lang="ja">こう</span>”（<span lang="ja">高校</span>）和“<span lang="ja">たか</span>”（<span lang="ja">高い</span>）两种键入方式。
+对于中文和日文，同一个字在不同情况下可能会有不同的键入方式。譬如，中文的“长”在不同的情况下会有“chang”和“zhang”两种键入方式；日文的“高”在不同的情况下也有“<span lang="ja">こう</span>”（<span lang="ja">高校</span>）和“<span lang="ja">たか</span>”（<span lang="ja">高い</span>）两种键入方式。
 
 如果两种键入方式会在同一个打字机效果中出现，那么我们就可以设定&#x202f;`routeMap`&#x202f;，来实现不同情况下文字的键入方式。
 
@@ -174,7 +176,7 @@ const typewriter = new Typewriter(
 
 ## `texts`&#x202f;的扩展使用方法
 
-`texts`&#x202f;是一个存储了打字机需要循环打印的句子的数组。`texts`&#x202f;中的元素通常为字符串。但是也可以为数组。
+`texts`&#x202f;是一个存储了打字机需要循环打印的句子的数组。`texts`&#x202f;中的元素通常为字符串。但是也可以为数组。但是，在新版本中，用于初始化的&#x202f;`texts`&#x202f;中的字符串，将会被转换为数组，以规避编码在&#x202f;U+10000&#x202f;到&#x202f;U+10FFFF&#x202f;之间的字符会由于&#x202f;UTF-16&#x202f;编码被拆分为两个字的问题。
 
 `texts`&#x202f;的一个元素为数组时，意味着该子数组中的各个元素将以整体在&#x202f;`routeDict`&#x202f;中寻找&#x202f;`route`。比如对于
 
@@ -216,7 +218,7 @@ additionalFunc = function (text) {return text;}
 
 `addtionalFunc`&#x202f;可用于实现&#x202f;`routeDict`、`routeMap`&#x202f;和&#x202f;`texts`&#x202f;达不到的效果。打字机效果每一步都会产生一个新的字符串，然后用这个字符串替换&#x202f;`element`&#x202f;元素中的文本内容。但是用户可能需要以固定的逻辑修改这个字符串，再进行替换。
 
-例如，想要在字符串没有完全显示出来之前的每一次打字，你都希望打乱字符串的顺序，直至字符串被打完。那么你可以这么写：
+例如，你希望打乱字符串的顺序，直至字符串被打完。那么你可以这么写：
 ```javascript
 function scrambleString(str, shouldNotScramble) {
     // 如果布尔值为真，直接返回原字符串

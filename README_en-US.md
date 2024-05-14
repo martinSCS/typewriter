@@ -49,6 +49,7 @@ Construction function of `Typewriter`&#x202f;accepts the following parameters:
 - `deletingSpeed` **(optional)**: Deletion speed in million seconds per character. Default is 50.
 - `typingPauseTime` **(optional)**: The pause time after typing in milliseconds. Default is 2,000.
 - `deletingPauseTime` **(optional)**: The pause time after deletion in milliseconds. Default is zero.
+- `loop` **(optional)**: Loop, which is used to specify whether the typewriter only completes one cycle of printing. Default is `true`, which means loop.
 - `routeDict` **(optional)**: Route dictionary, used to define type paths for special characters.
 - `routeMap` **(optional)**: Route map, used to specify the route path of a character at a specific position in the text.
 - `additionalFunc`&#x202f;**(optional)**: Additional function, to process the text produced by each typing or deletion step.
@@ -63,6 +64,7 @@ const typewriter = new Typewriter(
     50,                                          // deletingSpeed
     2000,                                        // typingPauseTime
     500,                                         // deletingPauseTime
+    true,                                        // loop
     {},                                          // routeDict
     {}                                           // routeMap
 );
@@ -212,11 +214,7 @@ You will see "<span lang="ja">章魚</span>" being shown in the order of "<span 
 
 ## Usage of `addtionalFunc`
 
-`addtionalFunc` is a function. One of its parameters must be a string and the return value must be a string. Its default value is a function that returns original string, like
-
-```javascript
-additionalFunc = function (text) {return text;}
-```
+`addtionalFunc` is a function. One of its parameters must be a string and the return value must be a string. Its default value is null, in which case the text will be returned without any changes.
 
 The `addtionalFunc` can be used to achieve effects that `routeDict`, `routeMap` and `text` cannot. The typewriter effect generates a new string at each step and replaces the text in the `element` with the string. However, users may need to modify the string with a kind of fixed logic before the replacing.
 
@@ -246,7 +244,7 @@ let texts = [
 const typewriter = new Typewriter(
     document.querySelector('#typewriter'), 
     texts, 
-    100, 50, 2000, 0, {}, {}, function (text) {return scrambleString(text, text === this.texts[this.textIndex].join('') || this.isDeleting === true);} // the second parameter is true when the text is typed or being deleted
+    100, 50, 2000, 0, {}, {}, function (text) {return scrambleString(text, text === typewriter.texts[typewriter.textIndex].join('') || typewriter.isDeleting === true);} // the second parameter is true when the text is typed or being deleted
 );
 ```
 

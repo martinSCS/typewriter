@@ -4,7 +4,7 @@
 
 # typewriter.js - 打字机效果&#x202f;JavaScript&#x202f;库
 
-`typewriter.js`&#x202f;是一个用于在网页上创建打字机效果的轻量级JavaScript库。它可以模拟文本的逐字打印和删除效果，适用于网站的标题、介绍或任何需要动态文本效果的地方。
+`typewriter.js`&#x202f;是一个用于在网页上创建打字机效果的轻量级&#x202f;JavaScript&#x202f;库。它可以模拟文本的逐字打印和删除效果，适用于网站的标题、介绍或任何需要动态文本效果的地方。
 
 ## 使用
 
@@ -49,6 +49,7 @@
 - `deletingSpeed` **(可选)**: 删除速度（毫秒/字符），默认为50。
 - `typingPauseTime` **(可选)**: 打字后的暂停时间（毫秒），默认为2000。
 - `deletingPauseTime` **(可选)**: 删除后的暂停时间（毫秒），默认为0。
+- `loop` **(可选)**：循环，用于指定打字机是否只完成一周期的打印，默认为&#x202f;`true`，即循环。
 - `routeDict` **(可选)**: 路由字典，用于定义特殊字符的打字路径。
 - `routeMap` **(可选)**: 路由映射，用于指定文本中特定位置字符的路由路径。
 - `additionalFunc`&#x202f;**(可选)**: 可选函数，用于对每一步打字或删除操作产生出来的文字进行处理。
@@ -63,12 +64,13 @@ const typewriter = new Typewriter(
     50,                                          // deletingSpeed
     2000,                                        // typingPauseTime
     500,                                         // deletingPauseTime
+    true,                                        // loop
     {},                                          // routeDict
     {}                                           // routeMap
 );
 ```
 
-以上代码会在&#x202f;`#typewriter`&#x202f;元素中创建一个打字机效果，依次打印“Hello, World!”和“Welcome to my website!”，每个字符的打字速度为1字每100毫秒，删除速度为1字每50毫秒，打字后暂停2秒（2,000毫秒），删除后暂停0.5秒（500毫秒）。
+以上代码会在&#x202f;`#typewriter`&#x202f;元素中创建一个打字机效果，依次打印“Hello, World!”和“Welcome to my website!”，每个字符的打字速度为1字每100毫秒，删除速度为1字每50毫秒，打字后暂停2秒（2,000毫秒），删除后暂停0.5秒（500毫秒），循环打印。
 
 ## `routeDict`&#x202f;和&#x202f;`routeMap`&#x202f;的使用方法
 
@@ -243,7 +245,7 @@ let texts = [
 const typewriter = new Typewriter(
     document.querySelector('#typewriter'), 
     texts, 
-    100, 50, 2000, 0, {}, {}, function (text) {return scrambleString(text, text === this.texts[this.textIndex].join('') || this.isDeleting === true);} //第二个参数在文本打完或正在删除时为真
+    100, 50, 2000, 0, {}, {}, function (text) {return scrambleString(text, text === typewriter.texts[typewriter.textIndex].join('') || typewriter.isDeleting === true);} //第二个参数在文本打完或正在删除时为真
 );
 ```
 

@@ -1,7 +1,8 @@
 class Typewriter {
-  constructor(element, texts, typingSpeed = 100, deletingSpeed = 50, typingPauseTime = 2000, deletingPauseTime = 0, routeDict = {}, routeMap = {}, additionalFunc = function (text) {return text;}) {
+  constructor(element, texts, typingSpeed = 100, deletingSpeed = 50, typingPauseTime = 2000, deletingPauseTime = 0, loop = true, routeDict = {}, routeMap = {}, additionalFunc = null) {
     this.element = element;
     this.texts = texts.map(text => typeof text === 'string' ? [...text] : text); 
+    this.loop = loop;
     this.typingSpeed = typingSpeed;
     this.deletingSpeed = deletingSpeed;
     this.typingPauseTime = typingPauseTime;
@@ -56,11 +57,17 @@ class Typewriter {
       if (this.charIndex > this.texts[this.textIndex].length) {
         this.isDeleting = true;
         this.currentTextLength = this.currentText.length;
-        setTimeout(() => this.type(), this.typingPauseTime);
+        if (this.loop || this.textIndex !== this.texts.length){
+          setTimeout(() => this.type(), this.typingPauseTime);
+        }
         return;
       }
     }
-    this.element.textContent = this.additionalFunc(this.currentText.join(''));
+    if (this.additionalFunc === null) {
+      this.element.textContent = this.currentText.join('');
+    } else {
+      this.element.textContent = this.additionalFunc(this.currentText.join(''));
+    }
     setTimeout(() => this.type(), this.isDeleting ? this.deletingSpeed : this.typingSpeed);
   }
 }

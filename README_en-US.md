@@ -17,7 +17,7 @@
 - **Customized speed**: You can customize the typing speed and deletion speed.
 - **Pause time**: You can set the pause time after typing and deleting.
 - **Loop play**: Loop play of text is supported.
-- **Root Dictionary and Route Mapping.**：Complex typing effects via route dictionary and route map are supported.
+- **Route Dictionary and Route Mapping**：Complex typing effects via route dictionary and route map are supported.
 
 ## Usage
 
@@ -52,7 +52,7 @@ Construction function of `Typewriter`&#x202f;accepts the following parameters:
 - `loop` **(optional)**: Loop, which is used to specify whether the typewriter only completes one cycle of printing. Default is `true`, which means loop.
 - `routeDict` **(optional)**: Route dictionary, used to define type paths for special characters.
 - `routeMap` **(optional)**: Route map, used to specify the route path of a character at a specific position in the text.
-- `additionalFunc`&#x202f;**(optional)**: Additional function, to process the text produced by each typing or deletion step.
+- `additionalFunc`&#x202f;**(optional)**: Additional function, to process the text produced by each typing or deletion step. Default is `null`.
 
 ## Examples
 

@@ -71,3 +71,5 @@ class Typewriter {
     setTimeout(() => this.type(), this.isDeleting ? this.deletingSpeed : this.typingSpeed);
   }
 }
+
+export default Typewriter;

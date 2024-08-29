@@ -1,3 +1,7 @@
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-1.0.0-brightgreen.svg)](https://github.com/martinSCS/typewriter/releases)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/martinSCS/typewriter/actions)
+
 <p style="text-align: center"><span lang="zh-hans">简体中文</span> | <span lang="en"><a href="README_en-US.md">English</a></span></p>
 
 [更新日志](log.md)
